@@ -23,6 +23,9 @@ public class L {
     public static void e(String msg){
         if (DEBUG) Log.e(TAG, msg);
     }
+    public static void w(String msg){
+        if (DEBUG) Log.w(TAG, msg);
+    }
 
     public static void v(String tag, String msg){
         if (DEBUG) Log.v(tag, msg);
@@ -35,5 +38,8 @@ public class L {
     }
     public static void e(String tag, String msg){
         if (DEBUG) Log.e(tag, msg);
+    }
+    public static void w(String tag, String msg){
+        if (DEBUG) Log.w(tag, msg);
     }
 }
