@@ -28,6 +28,12 @@ public class StorageUtil {
         return getCacheDirectory(context, true);
     }
 
+    /**
+     * 获取内存缓存目录
+     * @param context
+     * @param preferExternal
+     * @return
+     */
     public static File getCacheDirectory(Context context, boolean preferExternal){
         File appCacheDir = null;
         String externalStorageState;
@@ -49,6 +55,11 @@ public class StorageUtil {
         return appCacheDir;
     }
 
+    /**
+     * 获取sd卡上的缓存目录
+     * @param context
+     * @return
+     */
     private static File getExternamCacheDir(Context context){
 
         File dataDir = new File(new File(Environment.getExternalStorageDirectory(), "Android"), "data");
@@ -71,6 +82,15 @@ public class StorageUtil {
     private static boolean hasExternalStoragePermission(Context context){
         int perm = context.checkCallingOrSelfPermission(EXTERNAL_STORAGE_PERMISSION);
         return perm == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static File createReserveDiskCache(Context context){
+        File cacheFile = getCacheDirectory(context, false);
+        File individualFile = new File(cacheFile, "uil-image");
+        if (individualFile.exists() || individualFile.mkdir()){
+            cacheFile = individualFile;
+        }
+        return cacheFile;
     }
 
 }
